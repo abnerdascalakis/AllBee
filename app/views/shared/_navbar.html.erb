@@ -1,37 +1,85 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1f2937;">
+<header>
   <div class="container-fluid">
-    <!-- Logo / Marca -->
-    <a class="navbar-brand fw-bold" href="#">🐝 AllBee</a>
-
-    <!-- Botão toggler para mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRightLogout" aria-controls="navbarRightLogout" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarRightLogout">
+    <div class="row py-3 border-bottom">
+      <!-- Logo + toggler -->
+      <div class="col-sm-4 col-lg-2 text-center text-sm-start d-flex gap-3 justify-content-center justify-content-md-start">
+        <div class="d-flex align-items-center my-3 my-sm-0">
+          <%= link_to root_path do %>
+            <%= image_tag "/layout/img/logo.svg", alt: "logo", class: "img-fluid" %>
+          <% end %>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+          <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#menu"></use></svg>
+        </button>
+      </div>
+      <!-- Search bar -->
+      <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-4">
+        <div class="search-bar row bg-light p-2 rounded-4">
+          <div class="col-md-4 d-none d-md-block">
+            <select class="form-select border-0 bg-transparent">
+              <option>Todas categorias</option>
+              <option>Mel</option>
+              <option>Pólen</option>
+              <option>Própolis</option>
+            </select>
+          </div>
+          <div class="col-11 col-md-7">
+            <%= form_with url: produtos_path, method: :get, class: "text-center", local: true do %>
+              <%= text_field_tag :q, params[:q], class: "form-control border-0 bg-transparent", placeholder: "Buscar produtos..." %>
+            <% end %>
+          </div>
+          <div class="col-1 d-flex align-items-center justify-content-center">
+            <button type="submit" form="search-form" class="btn border-0 bg-transparent p-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
       <!-- Links principais -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to "Home", root_path, class: "nav-link text-white px-3" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Produtos", produtos_path, class: "nav-link text-white px-3" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Sobre nós", "#", class: "nav-link text-white px-3" %>
-        </li>
-      </ul>
-
-      <!-- Botão logout à direita -->
-      <div class="d-flex ms-auto">
-        <% if user_signed_in? %>
-        
-          <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "btn btn-outline-light rounded-pill px-3" %>
-        <% else %>
-          <%= link_to "Entrar", new_user_session_path, class: "btn btn-outline-light rounded-pill px-3 me-2" %>
-          <%= link_to "Cadastrar", new_user_registration_path, class: "btn btn-warning text-dark rounded-pill px-3" %>
-        <% end %>
+      <div class="col-lg-4">
+        <ul class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
+          <li class="nav-item <%= current_page?(root_path) ? "active" : "" %>">
+            <%= link_to "Home", root_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item <%= current_page?(produtos_path) ? "active" : "" %>">
+            <%= link_to "Produtos", produtos_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sobre nós", "#", class: "nav-link" %>
+          </li>
+        </ul>
+      </div>
+      <!-- Área de usuário / ícones -->
+      <div class="col-sm-8 col-lg-2 d-flex gap-5 align-items-center justify-content-center justify-content-sm-end">
+        <ul class="d-flex justify-content-end list-unstyled m-0">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete, class: "p-2 mx-1", title: "Sair" do %>
+                <svg width="24" height="24"><use xlink:href="#user"></use></svg>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to new_user_session_path, class: "p-2 mx-1", title: "Entrar" do %>
+                <svg width="24" height="24"><use xlink:href="#user"></use></svg>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path, class: "p-2 mx-1", title: "Cadastrar" do %>
+                <svg width="24" height="24"><use xlink:href="#wishlist"></use></svg>
+              <% end %>
+            </li>
+          <% end %>
+          <li>
+            <a href="#" class="p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+              <svg width="24" height="24"><use xlink:href="#shopping-bag"></use></svg>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-</nav>
+</header>
