@@ -5,11 +5,11 @@
   var initPreloader = function() {
     $(document).ready(function($) {
     var Body = $('body');
-        Body.addClass('preloader-site');
+        Body.addClass('preloader');
     });
     $(window).load(function() {
         $('.preloader-wrapper').fadeOut();
-        $('body').removeClass('preloader-site');
+        $('body').removeClass('preloader');
     });
   }
 
