@@ -8,3 +8,6 @@
 
   <%= button_to "Destroy this produto", @produto, method: :delete %>
 </div>
+<% if @produto.imagem.attached? %>
+  <%= image_tag @produto.imagem, class: "img-fluid" %>
+<% end %>

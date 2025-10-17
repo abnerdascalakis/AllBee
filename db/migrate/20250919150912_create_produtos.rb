@@ -6,6 +6,7 @@ class CreateProdutos < ActiveRecord::Migration[7.2]
       t.decimal :preco
       t.integer :estoque
 
+
       t.timestamps
     end
   end
