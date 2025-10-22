@@ -171,7 +171,7 @@
   <div class="container-lg">
     <div class="row">
       <div class="col-lg-6 pt-5 mt-5">
-        <h2 class="display-1 ls-1"><span class="fw-bold text-primary">Organic</span> Foods at your <span class="fw-bold">Doorsteps</span></h2>
+        <h2 class="display-1 ls-1"><span class="fw-bold text-primary">rrr</span> Foods at your <span class="fw-bold">Doorsteps</span></h2>
         <p class="fs-4">Dignissim massa diam elementum.</p>
         <div class="d-flex gap-3">
           <a href="#" class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">Start Shopping</a>
@@ -1895,3 +1895,35 @@
     </div>
   </div>
 </div>
+
+<section class="produtos-home">
+  <h2>Nossos Produtos</h2>
+  
+  <div class="produtos-grid">
+    <% @produtos.each do |produto| %>
+      <div class="produto-card">
+        <% if produto.imagem.attached? %>
+          <div class="imagem-container">
+            <%= image_tag produto.imagem, class: "produto-imagem" %>
+          </div>
+        <% else %>
+          <div class="sem-imagem">
+            <span>Sem imagem</span>
+          </div>
+        <% end %>
+        
+        <h3><%= produto.nome %></h3>
+        <p><%= produto.descricao %></p>
+        <span class="preco">R$ <%= produto.preco %></span>
+      </div>
+    <% end %>
+  </div>
+</section>
+<% if produto.imagem.attached? %>
+  <div class="imagem-container">
+    <%= image_tag produto.imagem.variant(resize_to_limit: [200, 150]), 
+                  class: "produto-imagem" %>
+  </div>
+<% else %>
+  <!-- código do placeholder -->
+<% end %>

@@ -2,11 +2,18 @@
 
 <%= render @produto %>
 
-<div>
-  <%= link_to "Edit this produto", edit_produto_path(@produto) %> |
-  <%= link_to "Back to produtos", produtos_path %>
+<div class="d-flex gap-3 mt-4">
+  
+  <%# Botão Principal para Edição (Estilo Primary/Azul) %>
+  <%= link_to "Editar", edit_produto_path(@produto), class: "btn btn-primary" %>
 
-  <%= button_to "Destroy this produto", @produto, method: :delete %>
+  <%# Botão para Voltar (Estilo Light/Outline para ser discreto) %>
+  <%= link_to "Voltar", produtos_path, class: "btn btn-outline-secondary" %>
+
+  <%# Botão de Excluir (Estilo Danger/Vermelho) %>
+  <%# O 'button_to' requer o uso de 'data: { confirm: ... }' para a confirmação de exclusão %>
+  <%= button_to "Excluir", @produto, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this product?" }, class: "btn btn-danger" %>
+  
 </div>
 <% if @produto.imagem.attached? %>
   <%= image_tag @produto.imagem, class: "img-fluid" %>

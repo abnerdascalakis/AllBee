@@ -1,22 +1,35 @@
-<div id="<%= dom_id produto %>">
-  <p>
-    <strong>Nome:</strong>
-    <%= produto.nome %>
-  </p>
+<div id="<%= dom_id(produto) %>" class="product-card text-center shadow-sm p-3 mb-4 bg-white rounded-4" style="width: 250px;">
+  <% if produto.imagem.attached? %>
+    <%= image_tag produto.imagem.variant(resize_to_limit: [150, 150]), 
+                  class: "img-fluid rounded-3 mb-2", 
+                  alt: produto.nome,
+                  style: "max-height: 150px; object-fit: cover;" %>
+  <% else %>
+    <div class="bg-light d-flex align-items-center justify-content-center rounded-3 mb-2" 
+         style="height: 150px;">
+      <span class="text-muted small">Sem imagem</span>
+    </div>
+  <% end %>
 
-  <p>
-    <strong>Descricao:</strong>
-    <%= produto.descricao %>
-  </p>
+  <h6 class="fw-semibold text-dark mt-2 mb-1"><%= produto.nome %></h6>
 
-  <p>
-    <strong>Preco:</strong>
-    <%= produto.preco %>
-  </p>
+  <!-- Estrelas fixas -->
+  <div class="text-warning mb-1">
+    <% 5.times do |i| %>
+      <i class="bi bi-star-fill"></i>
+    <% end %>
+    <span class="text-muted small">(222)</span>
+  </div>
 
-  <p>
-    <strong>Estoque:</strong>
-    <%= produto.estoque %>
-  </p>
+  <div>
+    <span class="text-muted text-decoration-line-through me-2">
+      <%= number_to_currency(produto.preco * 1.33, unit: "R$ ", separator: ",", delimiter: ".") %>
+    </span>
 
+    <span class="fw-bold text-dark me-2">
+      <%= number_to_currency(produto.preco, unit: "R$ ", separator: ",", delimiter: ".") %>
+    </span>
+
+    <span class="badge bg-success">10% OFF</span>
+  </div>
 </div>

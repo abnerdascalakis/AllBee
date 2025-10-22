@@ -2,15 +2,20 @@
 
 <% content_for :title, "Produtos" %>
 
-<h1>Produtos</h1>
+<h1>Produtos AllBee</h1>
 
 <div id="produtos">
   <% @produtos.each do |produto| %>
     <%= render produto %>
-    <p>
-      <%= link_to "Show this produto", produto %>
-    </p>
-  <% end %>
+    <%# ... Seu código da lista (iteração) deve estar aqui ... %>
+  <p class="mb-2">
+    <%# O link de visualização dentro da iteração %>
+    <%= link_to "Mostrar produto", produto, class: "btn btn-sm btn-outline-info" %>
+  </p>
+<% end %>
 </div>
 
-<%= link_to "New produto", new_produto_path %>
+<%# O link "New produto" fora da iteração %>
+<div class="mt-4">
+  <%= link_to "cadastrar produto", new_produto_path, class: "btn btn-success btn-lg" %>
+</div>
