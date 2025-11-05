@@ -13,59 +13,36 @@
  *= require_tree .
  *= require_self
  */
-.produtos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.produto-card {
-  border: 1px solid #ddd;
-  padding: 15px;
+/* Princípio de Fitts's Law - Áreas clicáveis maiores */
+.btn {
   border-radius: 8px;
-  background: white;
-  text-align: center;
+  transition: all 0.3s ease;
 }
 
-.imagem-container {
-  height: 150px;
-  overflow: hidden;
-  border-radius: 6px;
-  margin-bottom: 10px;
+/* Gestalt - Contraste e Hierarquia */
+.produto-nome {
+  color: #0d78e2;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
-.produto-imagem {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.preco-section {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 12px;
 }
 
-.sem-imagem {
-  height: 150px;
-  background: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  color: #666;
+/* Nielsen - Feedback do sistema */
+.btn:hover {
+  transform: scale(1.02);
 }
 
-.produto-card h3 {
-  margin: 0 0 10px 0;
-  color: #333;
-  font-size: 16px;
-}
-
-.produto-card p {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.preco {
-  font-weight: bold;
-  color: #2c5aa0;
-  font-size: 16px;
+/* Grid responsivo - Mobile First */
+@media (max-width: 576px) {
+  .produto-card {
+    margin-bottom: 1rem;
+  }
+  
+  .card-img-container {
+    height: 200px !important;
+  }
 }
