@@ -1,96 +1,14 @@
-<div id="<%= dom_id(produto) %>" class="product-card text-center shadow-sm p-3 mb-4 bg-white rounded-4 position-relative" style="width: 280px;">
-  <!-- Badge de Desconto (Gestalt - Destaque) -->
-  <div class="position-absolute top-0 start-0 m-2">
-    <span class="badge bg-danger fs-7 py-2">15% OFF</span>
-  </div>
-
-  <!-- Container de Imagem com Aspect Ratio Fixo (Consistência) -->
-  <div class="product-image-container mb-3" style="height: 200px; overflow: hidden;">
-    <% if produto.imagem.attached? %>
-      <%= image_tag produto.imagem.variant(resize_to_limit: [250, 250]), 
-                    class: "img-fluid rounded-3 w-100 h-100", 
-                    alt: produto.nome,
-                    style: "object-fit: cover; transition: transform 0.3s ease;",
-                    onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';" %>
-    <% end %>
-    
-    <!-- Fallback de imagem (Nielsen - Prevenção de erros) -->
-    <div class="bg-light d-flex align-items-center justify-content-center rounded-3 h-100 w-100 <%= 'd-none' if produto.imagem.attached? %>">
-      <div class="text-center">
-        <i class="fas fa-cube text-muted mb-2" style="font-size: 2rem;"></i>
-        <span class="text-muted small d-block">Sem imagem</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Informações do Produto -->
-  <div class="product-info">
-    <!-- Nome do produto com limite de linhas (Gestalt - Organização) -->
-    <h6 class="fw-semibold text-dark mb-2 product-title" 
-        style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 48px; line-height: 1.4;">
-      <%= produto.nome %>
-    </h6>
-
-    <!-- Preços com melhor hierarquia visual -->
-    <div class="pricing-section mb-3">
-      <div class="d-flex align-items-center justify-content-center gap-2">
-        <!-- Preço original riscado -->
-        <span class="text-muted text-decoration-line-through fs-7">
-          <%= number_to_currency(produto.preco * 1.5, unit: "R$ ", separator: ",", delimiter: ".") %>
-        </span>
-        
-        <!-- Preço atual com destaque -->
-        <span class="fw-bold text-dark fs-5">
-          <%= number_to_currency(produto.preco, unit: "R$ ", separator: ",", delimiter: ".") %>
-        </span>
-      </div>
-      
-      <!-- Economia do cliente (Nielsen - Transparência) -->
-      <small class="text-success fw-medium">
-        Economize <%= number_to_currency(produto.preco * 0.15, unit: "R$ ", separator: ",", delimiter: ".") %>
-      </small>
-    </div>
-
-    <!-- Ações do produto (Fitts's Law - Áreas clicáveis) -->
-    <div class="product-actions">
-      <button class="btn btn-outline-primary btn-sm w-100 mb-2 add-to-cart-btn" 
-              data-product-id="<%= produto.id %>"
-              style="border-radius: 25px; padding: 8px 16px;">
-        <i class="fas fa-shopping-cart me-2"></i>
-        Adicionar
-      </button>
-      
-      <%= link_to "Ver detalhes", produto, 
-                  class: "btn btn-link text-decoration-none text-muted p-0 fs-7",
-                  style: "transition: color 0.2s ease;" %>
-    </div>
-  </div>
-
-  <!-- Efeitos de hover (Nielsen - Feedback) -->
-  <style>
-    #<%= dom_id(produto) %> {
-      transition: all 0.3s ease;
-      border: 1px solid #f0f0f0;
-    }
-
-    #<%= dom_id(produto) %>:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.15) !important;
-      border-color: #007bff;
-    }
-
-    #<%= dom_id(produto) %>:hover .product-image-container img {
-      transform: scale(1.08);
-    }
-
-    #<%= dom_id(produto) %>:hover .btn-link {
-      color: #007bff !important;
-    }
-
-    .add-to-cart-btn:hover {
-      background-color: #007bff;
-      color: white;
-      transform: scale(1.05);
-    }
-  </style>
+<div id="<%= dom_id produto %>">
+  <p>
+    <strong>Nome:</strong>
+    <%= produto.nome %>
+  </p>
+  <p>
+    <strong>Descricao:</strong>
+    <%= produto.descricao %>
+  </p>
+  <p>
+    <strong>Preco:</strong>
+    <%= produto.preco %>
+  </p>
 </div>
