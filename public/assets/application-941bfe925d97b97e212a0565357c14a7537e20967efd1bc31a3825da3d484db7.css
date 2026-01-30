@@ -1,0 +1,63 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+/* Princípio de Fitts's Law - Áreas clicáveis maiores */
+.btn {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Gestalt - Contraste e Hierarquia */
+.produto-nome {
+  color: #0d78e2;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.preco-section {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 12px;
+}
+
+/* Nielsen - Feedback do sistema */
+.btn:hover {
+  transform: scale(1.02);
+}
+
+/* Grid responsivo - Mobile First */
+@media (max-width: 576px) {
+  .produto-card {
+    margin-bottom: 1rem;
+  }
+  
+  .card-img-container {
+    height: 200px !important;
+  }
+}
+
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-image: url(/assets/test-ea31b33cea595ce6a87443e42d525434ec6ae5ea0ce56be1d430412d2c507da5.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed; /* opcional */
+  min-height: 100vh;
+}
+
