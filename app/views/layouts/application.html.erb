@@ -34,6 +34,7 @@
           <%= stylesheet_link_tag "/layout/css/normalize.css", "data-turbo-track": "reload" %>
           <%= stylesheet_link_tag "/layout/css/vendor.css", "data-turbo-track": "reload" %>
           <%= stylesheet_link_tag "/layout/css/style.css", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
         </head>
         <body>
           <%= render "shared/icones" %>
@@ -50,3 +51,41 @@
           <script src="/layout/js/script.js"></script>
         </body>
       </html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+  </script>
+</head>
+<body>
+  <h1 class="md-typescale-display-medium">Hello Material!</h1>
+  <form>
+    <p class="md-typescale-body-medium">Check out these controls in a form!</p>
+    <md-checkbox></md-checkbox>
+    <div>
+      <md-radio name="group"></md-radio>
+      <md-radio name="group"></md-radio>
+      <md-radio name="group"></md-radio>
+    </div>
+    <md-outlined-text-field label="Favorite color" value="Purple"></md-outlined-text-field>
+    <md-outlined-button type="reset">Reset</md-outlined-button>
+  </form>
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  </style>
+</body>

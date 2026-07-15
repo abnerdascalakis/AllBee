@@ -60,3 +60,5 @@ gem "devise"
 gem "simple_form"
 gem "turbo-rails"
 gem "image_processing", "~> 1.2"
+
+gem "cssbundling-rails", "~> 1.4"
